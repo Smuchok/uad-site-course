@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-10">
+                    Будинки
+                    <br><br><br><br>
+                </div>
+
+                <div class="col-2"></div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+
+                {% for c in cards %}
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="card box-shadow">
+                        <a href="{{ c.get_absolute_url }}">
+                            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Photo preview: {{c.photo_preview}}" style="height: 225px; width: 100%; display: block;" 
+                            src="/static/main/img/houses/{{c.photo}}" data-holder-rendered="true">
+                        </a>
+                        <div class="card-body">
+                            <div class="title-group d-flex">
+                                <h3 class="card-title pricing-card-title">{{c.name}}</h3>
+                            </div>
+                            <h4 class="pricing-card-title">₴ {{c.price|floatformat:0}}</h4>
+
+                            <p>Місць: {{c.capacity}}</p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group flex-wrap" data-toggle="buttons">
+                                    <a href="{{ c.get_absolute_url }}order/"><button type="button" class="btn btn-sm btn-outline-primary">Замовити</button></a>
+                                    <a href="{{ c.get_absolute_url }}"><button type="button" class="btn btn-sm btn-outline-secondary">Більше</button></a>
+                                </div>
+                                <small class="text-muted">{{c.id}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
